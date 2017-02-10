@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
-    typescript = require('gulp-typescript');
+    typescript = require('gulp-typescript'),
+    sass = require('gulp-sass');
 
 gulp.task('default', function (done) {
 
@@ -15,7 +16,8 @@ gulp.task('default', function (done) {
             'copy-app-package-file',
             'copy-app-main-file'
         ],
-        'build-html'
+        'build-html',
+        "build-css"
     );
 });
 
@@ -50,6 +52,12 @@ gulp.task('build-app', function () {
     return tsResult.js
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('build-css', function () {
+  return gulp.src('./src/stylesheets/**/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('build-html', function () {
