@@ -15,18 +15,19 @@
 <!-- endinject -->
 
 <script>
-  System.config({
-    map: {
-      'react': '../node_modules/react/dist/react.js',
-      'react-dom': '../node_modules/react-dom/dist/react-dom.js'
-    },
-    packages: {
-      js: {
-        defaultExtension: 'js'
-      }
-    }
-  });
-  System.import('js/index.js').then(null, console.error.bind(console));
+  require('./js/index.js');
+  // System.config({
+  //   map: {
+  //     'react': '../node_modules/react/dist/react.js',
+  //     'react-dom': '../node_modules/react-dom/dist/react-dom.js'
+  //   },
+  //   packages: {
+  //     js: {
+  //       defaultExtension: 'js'
+  //     }
+  //   }
+  // });
+  // System.import('js/index.js').then(null, console.error.bind(console));
 </script>
 
 </html>

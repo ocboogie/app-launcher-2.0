@@ -1,14 +1,14 @@
 {
-  "name": "electron-typescript-react-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application with React",
-  "main": "dist/main.js",
+  "name": "app-launcher-2.0",
+  "version": "0.1.0",
+  "description": "A customizable app launcher",
+  "main": "dist/main",
   "scripts": {
-    "start": "electron dist/main.js"
+    "start": "gulp-watch && electron dist/main.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/claudioc/electron-typescript-react-quick-start.git"
+    "url": "git+https://github.com/ocboogie/app-launcher-2.0.git"
   },
   "keywords": [
     "Electron",
@@ -18,25 +18,22 @@
     "react",
     "systemjs"
   ],
-  "author": "Claudio Cicali",
+  "author": "ocboogie",
   "license": "MIT",
   "devDependencies": {
-    "del": "^2.2.0",
-    "electron-prebuilt": "^1.0.1",
+    "electron": "^1.4.15",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-inject": "^4.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.13.4",
-    "run-sequence": "^1.1.5",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.4",
+    "run-sequence": "^1.2.2",
     "typescript": "^2.1.6",
-    "gulp-sass": "^3.1.0"
+    "typings": "^2.1.0"
   },
   "dependencies": {
-    "electron-settings": "^2.2.2",
+    "@types/react": "^15.0.9",
+    "@types/react-dom": "^0.14.23",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "systemjs": "^0.19.27"
+    "react-dom": "^15.4.2"
   }
 }

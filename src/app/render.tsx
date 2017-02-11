@@ -1,11 +1,11 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {ButtonProps} from './button';
-import Grid from './grid';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import App from './app';
 
 export default function(buttons: ButtonProps[]) {
     ReactDOM.render(
-        <Grid buttons={buttons} />,
+        <App buttons={buttons} />,
         document.getElementById('content')
     );
 };

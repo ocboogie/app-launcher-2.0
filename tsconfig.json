@@ -1,19 +1,15 @@
 {
-  "compileOnSave": false, 
+  "compileOnSave": false,
   "compilerOptions": {
-    "rootDir" : "src/app",
-    "target": "ES5",
-    "module": "system",
-    "moduleResolution": "node",
+    "rootDir": "src/app/",
+    "outDir": "./dist/",
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
     "jsx": "react"
   },
-  "exclude": [
-    "typings/browser.d.ts",
-    "typings/browser",
-    "node_modules"
+  "files": [
+    "src/app/**/*"
   ]
 }

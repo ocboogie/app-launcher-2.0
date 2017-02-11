@@ -1,13 +1,6 @@
-/*import Greeting from './greeting';
-
-const greeting = new Greeting();
-
-console.log("TEST");
-
-greeting.hello();
-*/
-import React from 'react'
-import {ButtonProps, Button} from './button';
+import * as React from 'react';
+import {ButtonProps} from './button';
 import render from './render';
-let buttons = [{text: ""}, {text: "TEST2"}];
+
+let buttons = [{text: "TEST1"}, {text: "TEST2"}];
 render(buttons);
