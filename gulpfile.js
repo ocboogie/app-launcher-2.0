@@ -63,7 +63,7 @@ gulp.task('html:watch', function() {
 });
 
 gulp.task('ts:watch', function() {
-    gulp.watch(tsProject.config.files, ['build-ts']);
+    gulp.watch(tsProject.config.files, ['ts']);
 });
 
 gulp.task('sass:watch', function() {
