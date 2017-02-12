@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 var tsProject = typescript.createProject('tsconfig.json');
 
 const mainjs = "src/main.js";
-const htmlFile = "src/**/*.html";
+const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
 
 gulp.task('default', function(done) {
@@ -44,7 +44,7 @@ gulp.task('ts', function() {
 });
 
 gulp.task('html', function() {
-    return gulp.src(html)
+    return gulp.src(htmlFiles)
         .pipe(gulp.dest('dist'));
 });
 
