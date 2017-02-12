@@ -9,6 +9,9 @@
     "target": "es5",
     "jsx": "react"
   },
+  "include": [
+    "typings/**/*.ts"
+  ],
   "files": [
     "src/app/components/**/*",
     "src/app/**/*"
