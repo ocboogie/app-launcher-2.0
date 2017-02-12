@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {ButtonProps} from './button';
-import App from './app';
+import {ButtonProps} from './components/button';
+import App from './components/app';
 
 export default function(buttons: ButtonProps[]) {
     ReactDOM.render(

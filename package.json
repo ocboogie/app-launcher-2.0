@@ -11,14 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/ocboogie/app-launcher-2.0.git"
   },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "react",
-    "systemjs"
-  ],
   "author": "ocboogie",
   "license": "MIT",
   "devDependencies": {
@@ -27,8 +19,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-typescript": "^3.1.4",
     "run-sequence": "^1.2.2",
-    "typescript": "^2.1.6",
-    "typings": "^2.1.0"
+    "typescript": "^2.1.6"
   },
   "dependencies": {
     "@types/react": "^15.0.9",

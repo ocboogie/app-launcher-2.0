@@ -5,10 +5,12 @@ export interface ButtonProps {
 }
 
 export class Button extends React.Component<ButtonProps, {}> {
-
+    handleClick() {
+        console.log("TEST")
+    }
     render() {
         return (
-            <div className="button">
+            <div className="text" onClick={this.handleClick}>
                 <span>
                     {this.props.text}
                 </span>
