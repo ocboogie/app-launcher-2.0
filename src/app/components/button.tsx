@@ -49,8 +49,16 @@ export class ButtonCPNT extends React.Component<Button, {}> {
         }
     }
     render() {
+        console.log(this.props.color)
+        let style = null;
+        if (this.props.color) {
+            style = {backgroundColor: this.props.color};
+        } else {
+            style = {};
+
+        }
         return (
-            <div className="text" onClick={this.handleClick}>
+            <div style={style} className="text" onClick={this.handleClick}>
                 <span>
                     {this.props.text}
                 </span>

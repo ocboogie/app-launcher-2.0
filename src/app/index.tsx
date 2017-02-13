@@ -14,7 +14,7 @@ let grid2: Grid ={
 
 let grid: Grid ={
             buttons: [
-                {text: "TEST1", type: "app", value: "C:/Program Files/Sublime Text 3/sublime_text.exe"},
+                {text: "TEST1", type: "app", value: "C:/Program Files/Sublime Text 3/sublime_text.exe", color: "#ffffff"},
                 {text: "TEST2", type: "app", value: ""},
                 {text: "TEST3", type: "app", value: ""},
                 {text: "TEST4", type: "app", value: ""},

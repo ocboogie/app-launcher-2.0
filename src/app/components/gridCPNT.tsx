@@ -10,11 +10,11 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
             height: gridSize
         }
         let renderedButtons = this.props.grid.buttons.map((button, id) =>
-            <div className="grid" style={style} key={id}><ButtonCPNT {...button}/></div>
+            <div className="button-container" style={style} key={id}><ButtonCPNT {...button}/></div>
         );
 
         return (
-            <div className="button-container">
+            <div className="grid">
                 {renderedButtons}
             </div>
         );
