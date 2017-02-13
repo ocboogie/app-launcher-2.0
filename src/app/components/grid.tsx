@@ -1,21 +1,26 @@
 import * as React from 'react';
-import {Button, ButtonProps} from './button';
+import {ButtonCPNT, Button} from './button';
 
-export default class Grid extends React.Component<{buttons: ButtonProps[]}, {}> {
+export interface Grid {
+    buttons: Button[];
+    colors?: string[];
+
+};
+
+export class GridCPNT extends React.Component<{grid: Grid}, {}> {
     render() {
-        let buttons = this.props.buttons;
-        let gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(buttons.length))).toString() + "%";
+        let gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(this.props.grid.buttons.length))).toString() + "%";
         let style = {
             width: gridSize,
             height: gridSize
         }
-        let renderedButtons = buttons.map((button, id) =>
-            <div className="grid" style={style} key={id}><Button text={button.text}/></div>
+        let renderedButtons = this.props.grid.buttons.map((button, id) =>
+            <div className="grid" style={style} key={id}><ButtonCPNT {...button}/></div>
         );
 
         return (
             <div className="button-container">
-                {renderedButtons }
+                {renderedButtons}
             </div>
         );
     }

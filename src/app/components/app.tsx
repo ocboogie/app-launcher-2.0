@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {ButtonProps} from './button';
-import Grid from './grid';
+import {Button} from './button';
+import {GridCPNT, Grid} from './grid';
 
-export default class App extends React.Component<{buttons: ButtonProps[]}, {}> {
+export default class App extends React.Component<{grid: Grid}, {}> {
     render() {
         return (
             <div className="app">
-                <Grid buttons={this.props.buttons} />
+                <GridCPNT grid={this.props.grid} />
             </div>
         );
     }
