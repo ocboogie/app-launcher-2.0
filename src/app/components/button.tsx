@@ -1,13 +1,15 @@
 import * as React from 'react';
-import {exec} from "child_process";
+import loadGrid from '../loadGrid';
+import {exec} from 'child_process';
 import {Grid} from './grid';
+import {activeGrid} from '../activeGrid';
 
-export type ButtonTypes = "app" | "cmd" | "folder";
+export type ButtonTypes = "app" | "cmd" | "grid";
 
 export interface Button {
     text: string;
     type: ButtonTypes;
-    value: string | Grid[];
+    value: string | Grid;
     color?: string;
 }
 
@@ -21,6 +23,7 @@ export class ButtonCPNT extends React.Component<Button, {}> {
     }
 
     handleClick() {
+        console.log(activeGrid);
         if(this.props.value) {
             switch(this.props.type) {
                 case "app":
@@ -39,7 +42,13 @@ export class ButtonCPNT extends React.Component<Button, {}> {
                         }
                     });
                     break;
-                case "folder":
+                case "grid":
+                    if(typeof this.props.value !== "string"){
+                        if (typeof activeGrid !== "null") {
+                            this.props.value.parent = activeGrid;
+                        }
+                        loadGrid(this.props.value);
+                    }
                     break;
             }
         }

@@ -1,9 +1,17 @@
 import * as React from 'react';
 import {Button, ButtonTypes} from './components/button';
 import {Grid} from './components/grid';
-import render from './render';
+import loadGrid from './loadGrid';
 
-
+let grid2: Grid ={
+    buttons: [
+        {text: "TEST5", type: "app", value: "C:/Program Files/Sublime Text 3/sublime_text.exe"},
+        {text: "TEST6", type: "app", value: ""},
+        {text: "TEST7", type: "app", value: ""},
+        {text: "TEST8", type: "app", value: ""},
+        {text: "TEST9", type: "app", value: ""}
+    ]
+};
 
 let grid: Grid ={
             buttons: [
@@ -11,7 +19,7 @@ let grid: Grid ={
                 {text: "TEST2", type: "app", value: ""},
                 {text: "TEST3", type: "app", value: ""},
                 {text: "TEST4", type: "app", value: ""},
-                {text: "TEST5", type: "app", value: ""}
+                {text: "TEST5", type: "grid", value: grid2}
             ]
         };
-render(grid);
+loadGrid(grid);

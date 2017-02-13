@@ -3,6 +3,7 @@ import {ButtonCPNT, Button} from './button';
 
 export interface Grid {
     buttons: Button[];
+    parent?: Grid;
     colors?: string[];
 
 };
