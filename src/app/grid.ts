@@ -12,16 +12,13 @@ export interface Grid {
 
 };
 
-export function goBack(): void {
+export function gridBack(): void {
     if (activeGrid.parent) {
         loadGrid(activeGrid.parent);
     }
 }
 
 export function loadGrid(grid: Grid): void {
-    if (activeGrid) {
-        grid.parent = activeGrid;
-    }
     setActiveGrid(grid);
     render(grid);
 };

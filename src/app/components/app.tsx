@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Button} from './button';
 import GridCPNT from './gridCPNT';
-import {Grid, goBack} from '../grid';
+import {Grid, gridBack} from '../grid';
 
 export default class App extends React.Component<{grid: Grid}, {}> {
     constructor(props: any) {
@@ -11,7 +11,7 @@ export default class App extends React.Component<{grid: Grid}, {}> {
       this.handleClick = this.handleClick.bind(this);
     }
     handleClick(e: any) {
-        goBack();
+        gridBack();
     }
 
     render() {

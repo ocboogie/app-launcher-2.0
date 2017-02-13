@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {loadGrid, goBack, Grid, activeGrid} from '../grid';
+import {loadGrid, Grid, activeGrid} from '../grid';
 import {exec} from 'child_process';
 
 export type ButtonTypes = "app" | "cmd" | "grid";
@@ -21,7 +21,6 @@ export class ButtonCPNT extends React.Component<Button, {}> {
     }
 
     handleClick() {
-        console.log(activeGrid);
         if(this.props.value) {
             switch(this.props.type) {
                 case "app":
@@ -42,6 +41,9 @@ export class ButtonCPNT extends React.Component<Button, {}> {
                     break;
                 case "grid":
                     if(typeof this.props.value !== "string"){
+                        if (activeGrid) {
+                            this.props.value.parent = activeGrid;
+                        }
                         loadGrid(this.props.value);
                     }
                     break;
@@ -49,7 +51,6 @@ export class ButtonCPNT extends React.Component<Button, {}> {
         }
     }
     render() {
-        console.log(this.props.color)
         let style = null;
         if (this.props.color) {
             style = {backgroundColor: this.props.color};
