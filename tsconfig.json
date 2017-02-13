@@ -9,12 +9,11 @@
     "target": "es5",
     "jsx": "react"
   },
-  "include": [
-    "typings/**/*.ts"
-  ],
   "files": [
     "src/app/components/**/*",
-    "src/app/**/*"
+    "src/app/**/*",
+    "typings/index.d.ts",
+    "typings.d.ts"
   ],
   "filesGlob": [
 

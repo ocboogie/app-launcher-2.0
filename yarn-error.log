@@ -1,8 +1,8 @@
 Arguments: 
-  c:\program files\nodejs\node.exe c:\Program Files (x86)\Yarn\bin\yarn.js add electron-localshortcut
+  c:\program files\nodejs\node.exe c:\Program Files (x86)\Yarn\bin\yarn.js add jsonfile
 
 PATH: 
-  C:\Program Files (x86)\cmder\bin;C:\Program Files (x86)\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\Program Files (x86)\cmder\vendor\conemu-maximus5;C:\Program Files (x86)\cmder\vendor\conemu-maximus5\ConEmu;c:\programdata\oracle\java\javapath;c:\python27\;c:\python27\scripts;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\program files\git\cmd;c:\program files (x86)\yarn\bin;c:\program files\microsoft sql server\110\tools\binn\;c:\program files\microsoft sql server\120\tools\binn\;c:\program files\nodejs\;c:\windows\system32\config\systemprofile\.dnx\bin;c:\program files\microsoft dnx\dnvm\;c:\program files\microsoft sql server\130\tools\binn\;c:\program files (x86)\windows kits\8.1\windows performance toolkit\;c:\program files (x86)\gtksharp\2.12\bin;c:\program files\common files\autodesk shared\;c:\program files (x86)\autodesk\backburner\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Users\Boogie\AppData\Local\Microsoft\WindowsApps;C:\Users\Boogie\AppData\Local\atom\bin;C:\Users\Boogie\AppData\Local\Yarn\.bin;C:\Users\Boogie\.babun;C:\Users\Boogie\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin;c:\Program Files\Git\usr\bin;c:\Program Files\Git\usr\share\vim\vim74;C:\Program Files (x86)\cmder\
+  c:\programdata\oracle\java\javapath;c:\python27\;c:\python27\scripts;c:\windows\system32;c:\windows;c:\windows\system32\wbem;c:\windows\system32\windowspowershell\v1.0\;c:\program files\git\cmd;c:\program files (x86)\yarn\bin;c:\program files\microsoft sql server\110\tools\binn\;c:\program files\microsoft sql server\120\tools\binn\;c:\program files\nodejs\;c:\windows\system32\config\systemprofile\.dnx\bin;c:\program files\microsoft dnx\dnvm\;c:\program files\microsoft sql server\130\tools\binn\;c:\program files (x86)\windows kits\8.1\windows performance toolkit\;c:\program files (x86)\gtksharp\2.12\bin;c:\program files\common files\autodesk shared\;c:\program files (x86)\autodesk\backburner\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Users\Boogie\AppData\Local\Microsoft\WindowsApps;C:\Users\Boogie\AppData\Local\atom\bin;C:\Users\Boogie\AppData\Local\Yarn\.bin;C:\Users\Boogie\.babun;C:\Users\Boogie\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
 
 Yarn version: 
   0.17.9
@@ -2943,5 +2943,5 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zip-object/-/zip-object-0.1.0.tgz#c1a0da04c88c837756e248680a03ff902ec3f53a"
 
 Trace: 
-  Error: ENOENT: no such file or directory, open 'D:\DDocuments\Code\Node.js\app-launcher-3.0\node_modules\@types\react-dom\README.md'
+  Error: ENOENT: no such file or directory, open 'D:\DDocuments\Code\Node.js\app-launcher-3.0\node_modules\@types\react-dom\package.json'
       at Error (native)
