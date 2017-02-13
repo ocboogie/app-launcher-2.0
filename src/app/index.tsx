@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Button, ButtonTypes} from './components/button';
-import {Grid} from './components/grid';
-import loadGrid from './loadGrid';
+import {loadGrid, Grid} from './grid';
 
 let grid2: Grid ={
     buttons: [
@@ -9,7 +8,7 @@ let grid2: Grid ={
         {text: "TEST6", type: "app", value: ""},
         {text: "TEST7", type: "app", value: ""},
         {text: "TEST8", type: "app", value: ""},
-        {text: "TEST9", type: "app", value: ""}
+        {text: "TEST9", type: "cmd", value: "start ."}
     ]
 };
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Button} from './button';
-import {GridCPNT, Grid} from './grid';
+import GridCPNT from './gridCPNT';
+import {Grid} from '../grid';
 
 export default class App extends React.Component<{grid: Grid}, {}> {
     render() {
