@@ -4,6 +4,7 @@ import {Grid} from '../grid';
 
 export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
     render() {
+        console.log(this.props.grid);
         let gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(this.props.grid.buttons.length))).toString() + "%";
         let style = {
             width: gridSize,
