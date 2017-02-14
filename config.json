@@ -1,4 +1,5 @@
 {
+    "hotkey": "Super+C",
     "rootGrid": {
         "buttons": [{
                 "text": "TEST1",

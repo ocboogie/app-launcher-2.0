@@ -1,14 +1,18 @@
 const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
 
+const { app,
+        BrowserWindow,
+        globalShortcut,
+        ipcMain} = electron;
+
+const config = require('root-require')('config');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 function createWindow() {
+    let screen = electron.screen;
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 600,
@@ -20,6 +24,24 @@ function createWindow() {
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
+    let key = 'Super+C';
+    if (process.platform === "darwin") {
+        key = 'Cmd+Ctrl+C';
+    }
+    if(config.hotkey) {
+        key = config.hotkey;   
+    }
+
+    globalShortcut.register(key, () => {
+        if (mainWindow.isVisible()) {
+            mainWindow.hide();
+        } else {
+            mainWindow.webContents.send("loaded", config);
+            var pos = screen.getCursorScreenPoint();
+            mainWindow.setPosition(pos.x - (mainWindow.getSize()[0]) / 2, pos.y - (mainWindow.getSize()[1]) / 2);
+            mainWindow.show();
+        }
+    });
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {
@@ -28,6 +50,7 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
+    console.log("TEST");
 }
 
 // This method will be called when Electron has finished
