@@ -9,6 +9,7 @@ var tsProject = typescript.createProject('tsconfig.json');
 const mainjs = "src/main.js";
 const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
+const tsFiles = ["src/app/**/*.tsx", "src/app/**/*.ts"];
 
 gulp.task('default', function(done) {
     inSequence(
@@ -63,7 +64,7 @@ gulp.task('html:watch', function() {
 });
 
 gulp.task('ts:watch', function() {
-    gulp.watch(tsProject.config.files, ['ts']);
+    gulp.watch(tsFiles, ['ts']);
 });
 
 gulp.task('sass:watch', function() {

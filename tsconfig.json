@@ -10,12 +10,8 @@
     "jsx": "react"
   },
   "files": [
-    "src/app/components/**/*",
-    "src/app/**/*",
+    "typings.d.ts",
     "typings/index.d.ts",
-    "typings.d.ts"
-  ],
-  "filesGlob": [
-
+    "src/app/**/*"
   ]
 }
