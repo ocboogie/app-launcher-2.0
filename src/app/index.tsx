@@ -3,12 +3,13 @@ import * as rootRequire from 'root-require';
 import {Button, ButtonTypes} from './components/button';
 import {loadGrid, Grid} from './grid';
 import {ipcRenderer} from 'electron';
-let config: Config = rootRequire('config');
+export let config: Config = rootRequire('config');
 
 
 interface Config {
     rootGrid: Grid;
     hotkey?: string;
+    colors?: String[];
 }
 
 

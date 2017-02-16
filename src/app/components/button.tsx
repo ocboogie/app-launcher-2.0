@@ -9,6 +9,7 @@ export interface Button {
     type: ButtonTypes;
     value: string | Grid;
     color?: string;
+    style?: React.CSSProperties;
 }
 
 export class ButtonCPNT extends React.Component<Button, {}> {
@@ -51,15 +52,8 @@ export class ButtonCPNT extends React.Component<Button, {}> {
         }
     }
     render() {
-        let style = null;
-        if (this.props.color) {
-            style = {backgroundColor: this.props.color};
-        } else {
-            style = {};
-
-        }
         return (
-            <div style={style} className="text" onClick={this.handleClick}>
+            <div className="text" onClick={this.handleClick}>
                 <span>
                     {this.props.text}
                 </span>

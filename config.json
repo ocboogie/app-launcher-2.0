@@ -5,7 +5,10 @@
                 "text": "TEST1",
                 "type": "app",
                 "value": "C:/Program Files/Sublime Text 3/sublime_text.exe",
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "style": {
+                    "color": "#ffffff"
+                }
             },
             {
                 "text": "TEST2",
@@ -31,7 +34,8 @@
                         "type": "app",
                         "value": "C:/Program Files/Sublime Text 3/sublime_text.exe",
                         "color": "#ffffff"
-                    }]
+                        }
+                    ]
                 }
             }
         ]

@@ -10,8 +10,10 @@
     "jsx": "react"
   },
   "files": [
-    "typings.d.ts",
     "typings/index.d.ts",
+    "typings.d.ts"
+  ],
+  "include": [
     "src/app/**/*"
   ]
 }
