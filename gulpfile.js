@@ -56,7 +56,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('mainjs:watch', function() {
-    gulp.watch(mainjs, ['copy-mainjs']);
+    gulp.watch(mainjs, ['mainjs']);
 });
 
 gulp.task('html:watch', function() {
