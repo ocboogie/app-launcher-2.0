@@ -1,19 +1,14 @@
 import * as React from 'react';
-import * as rootRequire from 'root-require';
 import {Button, ButtonTypes} from './components/button';
+import {formatConfig, Config, config} from './config';
 import {loadGrid, Grid} from './grid';
 import {ipcRenderer} from 'electron';
-export let config: Config = rootRequire('config');
 
-
-interface Config {
-    rootGrid: Grid;
-    hotkey?: string;
-    colors?: String[];
-}
-
-
+ipcRenderer.on("show", (event) => {
+    loadGrid(config.rootGrid);
+});
 loadGrid(config.rootGrid);
+
 
 
 // let config: Button = jsonfile.readFileSync("../config.json");

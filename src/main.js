@@ -9,14 +9,24 @@ const config = require('root-require')('config');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let width = 500;
+let height = 500;
+
+
+if(config.windowSize) {
+    width = config.windowSize;
+    height = config.windowSize;
+}
 
 function createWindow() {
     let screen = electron.screen;
-
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 600,
-        height: 600
+        width: width,
+        height: height,
+        transparent: true,
+        frame: false,
+        alwaysOnTop: true,
     })
 
     // and load the index.html of the app.
@@ -36,7 +46,7 @@ function createWindow() {
         if (mainWindow.isVisible()) {
             mainWindow.hide();
         } else {
-            mainWindow.webContents.send("loaded", config);
+            mainWindow.webContents.send("show", config);
             var pos = screen.getCursorScreenPoint();
             mainWindow.setPosition(pos.x - (mainWindow.getSize()[0]) / 2, pos.y - (mainWindow.getSize()[1]) / 2);
             mainWindow.show();
@@ -77,3 +87,9 @@ app.on('activate', function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+ipcMain.on("hide", function(event) {
+    mainWindow.hide();
+    return
+});

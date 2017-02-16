@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ButtonCPNT, Button} from './button';
 import {Grid} from '../grid';
-import {config} from '../index';
+import {config} from '../config';
 
 export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
     render() {
@@ -24,7 +24,7 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
                 buttonStyle.backgroundColor = button.color;
             }
             if(button.style) {
-                Object.assign(buttonStyle, button.style)
+                Object.assign(buttonStyle, button.style);
             }
             renderedButtons.push(<div className="button-container" style={buttonStyle} key={id}><ButtonCPNT {...button}/></div>);
         });
