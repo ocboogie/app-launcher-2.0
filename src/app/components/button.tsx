@@ -3,7 +3,7 @@ import {loadGrid, Grid, activeGrid} from '../grid';
 import {exec} from 'child_process';
 import * as open from 'open';
 
-export type ButtonTypes = "app" | "cmd" | "grid" | "url";
+export type ButtonTypes = "app" | "cmd" | "grid" | "short folder" | "long folder" | "url";
 
 export interface Button {
     text: string;
@@ -44,7 +44,7 @@ export class ButtonCPNT extends React.Component<Button, {}> {
                 case "grid":
                     if(typeof this.props.value !== "string"){
                         if (activeGrid) {
-                            this.props.value.parent = activeGrid;
+                            this.props.value.properties.parent = activeGrid;
                         }
                         loadGrid(this.props.value);
                     }

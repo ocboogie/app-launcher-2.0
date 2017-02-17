@@ -9,6 +9,8 @@ A grid of buttons and folders to open apps, run CMD commands, open URLs, ect.
 * "cmd" Opens "value" as a command
 * "url" Opens "value" as a url
 * "grid" Opens "value" as a folder
+* "short folder" Opens a directory, "value" as a grid.
+* "long folder" Opens a directory, "value" as a grid recursively.
 
 ## Installation
 No release for now
