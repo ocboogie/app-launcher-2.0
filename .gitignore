@@ -3,3 +3,4 @@ dist
 yarn-error.log
 .vscode
 typings
+npm-debug.log
