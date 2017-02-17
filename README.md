@@ -5,9 +5,10 @@ A grid of buttons and folders to open apps, run CMD commands, open URLs, ect.
 
 ## Button types
 
-* "app" Opens "value" as a app.
-* "cmd" Opens "value" as a command.
-* "grid" Opens "value" as a folder.
+* "app" Opens "value" as a app
+* "cmd" Opens "value" as a command
+* "url" Opens "value" as a url
+* "grid" Opens "value" as a folder
 
 ## Installation
 No release for now

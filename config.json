@@ -1,39 +1,49 @@
 {
     "hotkey": "Super+C",
     "rootGrid": {
-        "buttons": [{
-                "text": "TEST1",
-                "type": "app",
-                "value": "C:/Program Files/Sublime Text 3/sublime_text.exe",
-                "color": "#ffffff",
-                "style": {
-                    "color": "#ffffff"
+        "buttons": [
+            {
+                "text": "apps",
+                "type": "grid",
+                "value": {
+                    "buttons": [
+                        {
+                            "text": "Cmder",
+                            "type": "app",
+                            "value": "C:/Program Files (x86)/cmder/Cmder.exe"
+                        },
+                        {
+                            "text": "Sublime Text",
+                            "type": "app",
+                            "value": "C:/Program Files/Sublime Text 3/sublime_text.exe"
+                        },
+                        {
+                            "text": "Atom",
+                            "type": "cmd",
+                            "value": "C:/Users/Boogie/AppData/Local/atom/Update.exe --processStart \"atom.exe\""
+                        },
+                        {
+                            "text": "VSCode",
+                            "type": "app",
+                            "value": "C:/Program Files (x86)/Microsoft VS Code/Code.exe"
+                        }
+                    ]
                 }
             },
             {
-                "text": "TEST2",
-                "type": "app",
-                "value": ""
-            },
-            {
-                "text": "TEST3",
-                "type": "app",
-                "value": ""
-            },
-            {
-                "text": "TEST4",
-                "type": "app",
-                "value": ""
-            },
-            {
-                "text": "TEST5",
+                "text": "Urls",
                 "type": "grid",
                 "value": {
-                    "buttons": [{
-                        "text": "TEST1",
-                        "type": "app",
-                        "value": "C:/Program Files/Sublime Text 3/sublime_text.exe",
-                        "color": "#ffffff"
+                    "buttons": [
+                        {
+                            "text": "Youtube",
+                            "type": "url",
+                            "value": "http://www.youtube.com"
+                        },
+                        {
+                            "text": "Google",
+                            "type": "url",
+                            "value": "http://www.google.com"
                         }
                     ]
                 }

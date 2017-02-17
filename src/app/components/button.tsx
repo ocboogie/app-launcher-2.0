@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {loadGrid, Grid, activeGrid} from '../grid';
 import {exec} from 'child_process';
+import * as open from 'open';
 
-export type ButtonTypes = "app" | "cmd" | "grid";
+export type ButtonTypes = "app" | "cmd" | "grid" | "url";
 
 export interface Button {
     text: string;
@@ -48,6 +49,9 @@ export class ButtonCPNT extends React.Component<Button, {}> {
                         loadGrid(this.props.value);
                     }
                     break;
+                case "url":
+                    open(this.props.value);
+                    break
             }
         }
     }
