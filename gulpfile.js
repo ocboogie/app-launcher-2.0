@@ -60,7 +60,7 @@ gulp.task('mainjs:watch', function() {
 });
 
 gulp.task('html:watch', function() {
-    gulp.watch(htmlFiles, ['build-html']);
+    gulp.watch(htmlFiles, ['html']);
 });
 
 gulp.task('ts:watch', function() {
