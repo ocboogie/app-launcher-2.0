@@ -1,7 +1,5 @@
 import {Grid, formatGrid, dir2GridRecursive} from './grid';
-import * as rootRequire from 'root-require';
 import * as appRoot from 'app-root-path';
-
 
 export let config: Config;
 
@@ -14,7 +12,7 @@ export interface Config {
 }
 
 export function initConfig() {
-    config = rootRequire('config');
+    config = require(appRoot + "/config");
     config = formatConfig(config);
 }
 

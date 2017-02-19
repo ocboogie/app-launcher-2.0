@@ -27,7 +27,6 @@
     "app-root-path": "^2.0.1",
     "open": "0.0.5",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "root-require": "^0.3.1"
+    "react-dom": "^15.4.2"
   }
 }

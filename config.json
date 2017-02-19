@@ -47,11 +47,6 @@
                         }
                     ]
                 }
-            },
-            {
-                "text": "test",
-                "type": "short folder",
-                "value": "./test"
             }
         ]
     }
