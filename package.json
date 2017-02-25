@@ -22,6 +22,8 @@
     "typescript": "^2.1.6"
   },
   "dependencies": {
+    "@types/electron": "^1.4.32",
+    "@types/node": "^7.0.5",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
     "app-root-path": "^2.0.1",
