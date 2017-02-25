@@ -1,5 +1,5 @@
 import * as React from 'react';
-import render from './render';
+import {renderGrid} from './render';
 import GridCPNT from './components/GridCPNT';
 import {Button} from './components/Button';
 import * as fs from 'fs';
@@ -15,7 +15,7 @@ export interface Properties {
 export interface Grid {
     buttons: Button[];
     colors?: string[];
-    properties?: Properties;
+    properties: Properties;
 };
 
 export function formatGrid(grid: Grid): Grid {
@@ -47,7 +47,7 @@ export function gridBack(): void {
 
 export function loadGrid(grid: Grid): void {
     setActiveGrid(grid);
-    render(grid);
+    renderGrid(grid);
     console.log(grid);
 };
 
@@ -58,7 +58,7 @@ export function setActiveGrid(grid: Grid) {
 
 export function dir2Grid(path: string): Grid {
     let dir = fs.readdirSync(path);
-    let grid: Grid = {buttons: []};
+    let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
         if(!fs.lstatSync(`${path}/${file}`).isDirectory()) {
             let button: Button = {text: file, type: "app", value: ""};
@@ -71,7 +71,7 @@ export function dir2Grid(path: string): Grid {
 
 export function dir2GridRecursive(path: string): Grid {
     let dir = fs.readdirSync(path);
-    let grid: Grid = {buttons: []};
+    let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
         let button: Button = {text: file, type: "app", value: ""};
         if(fs.lstatSync(`${path}/${file}`).isDirectory()) {
