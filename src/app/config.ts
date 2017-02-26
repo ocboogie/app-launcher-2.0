@@ -10,6 +10,7 @@ export interface Config {
     colors?: string[];
     windowsSize?: number;
     folderPath?: string;
+    style?: React.CSSProperties;
 }
 
 export function initConfig() {
