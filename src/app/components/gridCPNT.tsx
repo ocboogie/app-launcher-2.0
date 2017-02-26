@@ -21,7 +21,7 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
             if(button.color) {
                 buttonStyle.backgroundColor = button.color;
             } else if(config.colors) {
-                buttonStyle.backgroundColor = button.color;
+                buttonStyle.backgroundColor = config.colors[Math.floor(Math.random() * config.colors.length)];;
             }
             if(button.style) {
                 Object.assign(buttonStyle, button.style);

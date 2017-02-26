@@ -14,7 +14,7 @@ export interface Config {
 
 export function initConfig() {
     config = require(appRoot + "/config");  
-    checkConfig(config);
+    // checkConfig(config);
     config = formatConfig(config);
 }
 
@@ -29,7 +29,7 @@ export function formatConfig(config: Config): Config {
     return config;
 }
 
-export function checkConfig(config: Config): void {
-    console.log(typeof config.rootGrid);
-}
+// export function checkConfig(config: Config): void {
+//     console.log(typeof config.rootGrid ===);
+// }
 
