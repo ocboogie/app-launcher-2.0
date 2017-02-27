@@ -2,8 +2,30 @@ import * as React from 'react';
 import {loadGrid, Grid, activeGrid} from '../grid';
 import {exec} from 'child_process';
 import * as open from 'open';
+import {ipcRenderer} from 'electron';
 
 export type ButtonTypes = "app" | "cmd" | "grid" | "short folder" | "long folder" | "url";
+
+var buttonTypes = {
+    app: {
+        close: true
+    },
+    cmd: {
+        close: true
+    },
+    grid: {
+        close: false
+    },
+    "short folder": {
+        close: false
+    },
+    "long folder": {
+        close: false
+    },
+    "url": {
+        close: true
+    }
+}
 
 export interface Button {
     text: string;
@@ -52,6 +74,9 @@ export class ButtonCPNT extends React.Component<Button, {}> {
                 case "url":
                     open(this.props.value);
                     break
+            }
+            if(buttonTypes[this.props.type].close) {
+                ipcRenderer.send("hide")
             }
         }
     }
