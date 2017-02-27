@@ -26,7 +26,7 @@ const buttonTypes: { [id: string]: ButtonType; } = {
     "cmd": {
         close: true,
         run: (props: Button) => {
-            exec(`${this.props.value}`, (error, stdout, stderr) => {
+            exec(`${props.value}`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
                     return;
@@ -36,11 +36,13 @@ const buttonTypes: { [id: string]: ButtonType; } = {
     },
     "grid": {
         close: false,
-        run: (props: Button) => {
-            if (activeGrid) {
-                this.props.value.properties.parent = activeGrid;
+        run: (button: Button) => {
+            if(typeof button.value !== "string"){
+                if (activeGrid) {
+                    button.value.properties.parent = activeGrid;
+                }
+                loadGrid(button.value);
             }
-            loadGrid(this.props.value);
         }
     },
     "short folder": {
