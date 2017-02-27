@@ -6,15 +6,42 @@ import {ipcRenderer} from 'electron';
 
 export type ButtonTypes = "app" | "cmd" | "grid" | "short folder" | "long folder" | "url";
 
-var buttonTypes = {
-    app: {
-        close: true
+export interface ButtonType {
+    close: boolean;
+    run?: (props: Button) => void;
+}
+
+const buttonTypes: { [id: string]: ButtonType; } = {
+    "app": {
+        close: true,
+        run: (props: Button) => {
+            exec(`\"${props.value}\"`, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`exec error: ${error}`);
+                    return;
+                }
+            });
+        }
     },
-    cmd: {
-        close: true
+    "cmd": {
+        close: true,
+        run: (props: Button) => {
+            exec(`${this.props.value}`, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`exec error: ${error}`);
+                    return;
+                }
+            });
+        }
     },
-    grid: {
-        close: false
+    "grid": {
+        close: false,
+        run: (props: Button) => {
+            if (activeGrid) {
+                this.props.value.properties.parent = activeGrid;
+            }
+            loadGrid(this.props.value);
+        }
     },
     "short folder": {
         close: false
@@ -23,7 +50,10 @@ var buttonTypes = {
         close: false
     },
     "url": {
-        close: true
+        close: true,
+        run: (props: Button) => {
+            open(props.value);
+        }
     }
 }
 
@@ -46,38 +76,13 @@ export class ButtonCPNT extends React.Component<Button, {}> {
 
     handleClick() {
         if(this.props.value) {
-            switch(this.props.type) {
-                case "app":
-                    exec(`\"${this.props.value}\"`, (error, stdout, stderr) => {
-                        if (error) {
-                            console.error(`exec error: ${error}`);
-                            return;
-                        }
-                    });
-                    break;
-                case "cmd":
-                    exec(`${this.props.value}`, (error, stdout, stderr) => {
-                        if (error) {
-                            console.error(`exec error: ${error}`);
-                            return;
-                        }
-                    });
-                    break;
-                case "grid":
-                    if(typeof this.props.value !== "string"){
-                        if (activeGrid) {
-                            this.props.value.properties.parent = activeGrid;
-                        }
-                        loadGrid(this.props.value);
-                    }
-                    break;
-                case "url":
-                    open(this.props.value);
-                    break
+            if (buttonTypes[this.props.type].run) {
+                buttonTypes[this.props.type].run(this.props);
             }
             if(buttonTypes[this.props.type].close) {
-                ipcRenderer.send("hide")
-            }
+                ipcRenderer.send("hide");
+            } 
+        
         }
     }
     render() {
