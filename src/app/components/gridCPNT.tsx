@@ -23,11 +23,12 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
             } else if(config.colors) {
                 buttonStyle.backgroundColor = config.colors[Math.floor(Math.random() * config.colors.length)];;
             }
-            if (button.style) {
-                Object.assign(buttonStyle, button.style);
-            } else if(config.style) {
+            if (config.style) {
                 Object.assign(buttonStyle, config.style);
             }
+            if (button.style) {
+                Object.assign(buttonStyle, button.style);
+            } 
             renderedButtons.push(<div className="button-container" style={buttonStyle} key={id}><ButtonCPNT {...button}/></div>);
         });
 
