@@ -11,6 +11,7 @@ export interface Config {
     windowsSize?: number;
     folderPath?: string;
     style?: React.CSSProperties;
+    hideFocus?: boolean;
 }
 
 export function initConfig() {

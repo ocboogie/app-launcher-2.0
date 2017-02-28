@@ -28,7 +28,10 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
             }
             if (button.style) {
                 Object.assign(buttonStyle, button.style);
-            } 
+            }
+            if (this.props.grid.style) {
+                Object.assign(buttonStyle, this.props.grid.style);
+            }
             renderedButtons.push(<div className="button-container" style={buttonStyle} key={id}><ButtonCPNT {...button}/></div>);
         });
 

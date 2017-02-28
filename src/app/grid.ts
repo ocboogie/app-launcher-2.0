@@ -15,6 +15,7 @@ export interface Properties {
 export interface Grid {
     buttons: Button[];
     colors?: string[];
+    style?: React.CSSProperties;
     properties: Properties;
 };
 
