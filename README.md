@@ -3,14 +3,16 @@ A grid of buttons and folders to open apps, run CMD commands, open URLs, ect.
 
 ![](http://i.imgur.com/6RwT4b0.png)
 
-## Button types
+## [Configuration](https://github.com/ocboogie/app-launcher-2.0/wiki/Configuration)
 
-* "app" Opens "value" as a app
-* "cmd" Opens "value" as a command
-* "url" Opens "value" as a url
-* "grid" Opens "value" as a folder
-* "short folder" Opens a directory, "value" as a grid.
-* "long folder" Opens a directory, "value" as a grid recursively.
+
+## [Grid](https://github.com/ocboogie/app-launcher-2.0/wiki/Grid)
+
+
+## [Button](https://github.com/ocboogie/app-launcher-2.0/wiki/Button)
+
+## [Button Types](https://github.com/ocboogie/app-launcher-2.0/wiki/Buttons-types)
+
 
 ## Installation
 No release for now
