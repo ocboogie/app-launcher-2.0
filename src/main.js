@@ -18,8 +18,19 @@ if(config.windowSize) {
     height = config.windowSize;
 }
 
-function createWindow() {
+function toggleHide() {
     let screen = electron.screen;
+    if (mainWindow.isVisible()) {
+        mainWindow.hide();
+    } else {
+        mainWindow.webContents.send("show", config);
+        var pos = screen.getCursorScreenPoint();
+        mainWindow.setPosition(pos.x - (mainWindow.getSize()[0]) / 2, pos.y - (mainWindow.getSize()[1]) / 2);
+        mainWindow.show();
+    }
+}
+
+function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: width,
@@ -43,14 +54,7 @@ function createWindow() {
     }
 
     globalShortcut.register(key, () => {
-        if (mainWindow.isVisible()) {
-            mainWindow.hide();
-        } else {
-            mainWindow.webContents.send("show", config);
-            var pos = screen.getCursorScreenPoint();
-            mainWindow.setPosition(pos.x - (mainWindow.getSize()[0]) / 2, pos.y - (mainWindow.getSize()[1]) / 2);
-            mainWindow.show();
-        }
+        toggleHide()
     });
 
     // Emitted when the window is closed.
@@ -60,7 +64,11 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
-    console.log("TEST");
+    if(!config["hideFocus"]) {
+        mainWindow.on("blur", () => {
+            mainWindow.hide();
+        });
+    }
 }
 
 // This method will be called when Electron has finished
