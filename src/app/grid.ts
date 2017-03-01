@@ -79,8 +79,6 @@ export function dir2GridRecursive(folderPath: string): Grid {
     }
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
-        console.log(file + ": " + path.extname(file));
-        
         let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
         if(fs.lstatSync(`${folderPath}/${file}`).isDirectory() && path.extname(file) !== ".app") {
             button.type = "grid";
