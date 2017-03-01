@@ -12,6 +12,7 @@ export interface Config {
     folderPath?: string;
     style?: React.CSSProperties;
     hideFocus?: boolean;
+    showHidden?: boolean;
 }
 
 export function initConfig() {

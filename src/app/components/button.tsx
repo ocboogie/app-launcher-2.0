@@ -3,6 +3,8 @@ import {loadGrid, Grid, activeGrid} from '../grid';
 import {exec} from 'child_process';
 import * as open from 'open';
 import {ipcRenderer} from 'electron';
+import * as os from 'os';
+
 
 export type ButtonTypes = "app" | "cmd" | "grid" | "short folder" | "long folder" | "url";
 
@@ -15,12 +17,21 @@ const buttonTypes: { [id: string]: ButtonType; } = {
     "app": {
         close: true,
         run: (props: Button) => {
-            exec(`\"${props.value}\"`, (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`exec error: ${error}`);
-                    return;
-                }
-            });
+            if(os.platform() === "darwin") {
+                exec(`open \"${props.value}\"`, (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`exec error: ${error}`);
+                        return;
+                    }
+                });
+            } else {
+                exec(`\"${props.value}\"`, (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`exec error: ${error}`);
+                        return;
+                    }
+                });
+            }
         }
     },
     "cmd": {

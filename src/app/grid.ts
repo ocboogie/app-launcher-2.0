@@ -3,6 +3,8 @@ import {renderGrid} from './render';
 import GridCPNT from './components/GridCPNT';
 import {Button} from './components/Button';
 import * as fs from 'fs';
+import * as path from 'path';
+import {config} from './config';
 
 
 export var activeGrid: Grid;
@@ -57,29 +59,34 @@ export function setActiveGrid(grid: Grid) {
     activeGrid = grid;
 }
 
-export function dir2Grid(path: string): Grid {
-    let dir = fs.readdirSync(path);
+export function dir2Grid(folderPath: string): Grid {
+    let dir = fs.readdirSync(folderPath);
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
-        if(!fs.lstatSync(`${path}/${file}`).isDirectory()) {
-            let button: Button = {text: file, type: "app", value: ""};
-            button.value = `${path}/${file}`;
+        if(!fs.lstatSync(`${folderPath}/${file}`).isDirectory()) {
+            let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
+            button.value = `${folderPath}/${file}`;
             grid.buttons.push(button);
         }
     });
     return grid;
 }
 
-export function dir2GridRecursive(path: string): Grid {
-    let dir = fs.readdirSync(path);
+export function dir2GridRecursive(folderPath: string): Grid {
+    let dir = fs.readdirSync(folderPath);
+    if(!config.showHidden || (typeof config.showHidden === 'boolean' && !config.showHidden)) {
+        dir = dir.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+    }
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
-        let button: Button = {text: file, type: "app", value: ""};
-        if(fs.lstatSync(`${path}/${file}`).isDirectory()) {
+        console.log(file + ": " + path.extname(file));
+        
+        let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
+        if(fs.lstatSync(`${folderPath}/${file}`).isDirectory() && path.extname(file) !== ".app") {
             button.type = "grid";
-            button.value = dir2GridRecursive(`${path}/${file}`);
+            button.value = dir2GridRecursive(`${folderPath}/${file}`);
         } else {
-            button.value = `${path}/${file}`;
+            button.value = `${folderPath}/${file}`;
         }
         grid.buttons.push(button);
     });
