@@ -73,7 +73,7 @@ export function dir2Grid(folderPath: string): Grid {
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
         let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
-        if (!(fs.lstatSync(`${folderPath}/${file}`).isDirectory())) {
+        if (!(fs.statSync(`${folderPath}/${file}`).isDirectory())) {
             if (Object.keys(extensions).indexOf(path.extname(file).slice(1)) > -1) {
                 Object.assign(button, extensions[path.extname(file).slice(1)](file, folderPath, button));
             } else {
@@ -94,7 +94,7 @@ export function dir2GridRecursive(folderPath: string): Grid {
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
         let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
-        if(fs.lstatSync(`${folderPath}/${file}`).isDirectory() && path.extname(file) !== ".app") {
+        if (fs.statSync(`${folderPath}/${file}`).isDirectory() && path.extname(file) !== ".app") {
             button.type = "grid";
             button.value = dir2GridRecursive(`${folderPath}/${file}`);
         } else {
