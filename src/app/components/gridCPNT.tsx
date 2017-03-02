@@ -20,17 +20,19 @@ export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
             let buttonStyle: React.CSSProperties = {...style};
             if(button.color) {
                 buttonStyle.backgroundColor = button.color;
+            } else if (this.props.grid.colors) {
+                buttonStyle.backgroundColor = this.props.grid.colors[Math.floor(Math.random() * this.props.grid.colors.length)];;
             } else if(config.colors) {
                 buttonStyle.backgroundColor = config.colors[Math.floor(Math.random() * config.colors.length)];;
-            }
+            } 
             if (config.style) {
                 Object.assign(buttonStyle, config.style);
             }
-            if (button.style) {
-                Object.assign(buttonStyle, button.style);
-            }
             if (this.props.grid.style) {
                 Object.assign(buttonStyle, this.props.grid.style);
+            }
+            if (button.style) {
+                Object.assign(buttonStyle, button.style);
             }
             renderedButtons.push(<div className="button-container" style={buttonStyle} key={id}><ButtonCPNT {...button}/></div>);
         });
