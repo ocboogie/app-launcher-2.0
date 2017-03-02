@@ -6,6 +6,15 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {config} from './config';
 
+export type extensionTypes = "web"
+
+export const extensions: { [id: string]: Function; } = {
+    "web": (fileName: string, folderPath: string, button: Button): Button => {
+        button.type = "url";
+        button.value = fs.readFileSync(`${folderPath}/${fileName}`, "utf8")
+        return button;
+    }
+}
 
 export var activeGrid: Grid;
 
@@ -63,11 +72,16 @@ export function dir2Grid(folderPath: string): Grid {
     let dir = fs.readdirSync(folderPath);
     let grid: Grid = {buttons: [], properties: undefined};
     dir.forEach((file: string) => {
-        if(!fs.lstatSync(`${folderPath}/${file}`).isDirectory()) {
-            let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
-            button.value = `${folderPath}/${file}`;
-            grid.buttons.push(button);
+        let button: Button = {text: path.basename(file, path.extname(file)), type: "app", value: ""};
+        if (!(fs.lstatSync(`${folderPath}/${file}`).isDirectory())) {
+            if (Object.keys(extensions).indexOf(path.extname(file).slice(1)) > -1) {
+                Object.assign(button, extensions[path.extname(file).slice(1)](file, folderPath, button));
+            } else {
+                button.value = `${folderPath}/${file}`;
+            }
+        } else if (Object.keys(extensions).indexOf(path.extname(file).slice(1)) > -1) {
         }
+        grid.buttons.push(button);
     });
     return grid;
 }
@@ -84,7 +98,11 @@ export function dir2GridRecursive(folderPath: string): Grid {
             button.type = "grid";
             button.value = dir2GridRecursive(`${folderPath}/${file}`);
         } else {
-            button.value = `${folderPath}/${file}`;
+            if (Object.keys(extensions).indexOf(path.extname(file).slice(1)) > -1) {
+                Object.assign(button, extensions[path.extname(file).slice(1)](file, folderPath, button));
+            } else {
+                button.value = `${folderPath}/${file}`;
+            }
         }
         grid.buttons.push(button);
     });
