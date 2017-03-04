@@ -1,5 +1,6 @@
 import {Grid, formatGrid, dir2GridRecursive} from './grid';
 import {renderError} from './render';
+import { changeKeys} from './lib/keyGen';
 import * as appRoot from 'app-root-path';
 
 export let config: Config;
@@ -13,12 +14,18 @@ export interface Config {
     style?: React.CSSProperties;
     hideFocus?: boolean;
     showHidden?: boolean;
+    highlightColor?: string;
+    keycodeKeys?: string;
 }
 
 export function initConfig() {
     config = require(appRoot + "/config");  
     // checkConfig(config);
     config = formatConfig(config);
+    if (config.keycodeKeys) {
+        changeKeys(config.keycodeKeys);
+    }
+    
 }
 
 export function formatConfig(config: Config): Config {

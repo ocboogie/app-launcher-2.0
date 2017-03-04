@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {ipcRenderer} from 'electron';
-import {Button} from './button';
+import {Button} from '../button';
 import GridCPNT from './gridCPNT';
-import {Grid, gridBack, activeGrid} from '../grid';
+import {Grid, gridBack, activeGrid, setActiveGridCPNT} from '../grid';
 
 export default class App extends React.Component<{grid: Grid}, {}> {
     constructor(props: any) {
@@ -20,9 +20,11 @@ export default class App extends React.Component<{grid: Grid}, {}> {
     }
 
     render() {
+        let grid = <GridCPNT {...this.props.grid} />;
+        setActiveGridCPNT(grid);
         return (
             <div onContextMenu={this.handleClick} className="app">
-                <GridCPNT grid={this.props.grid} />
+                <GridCPNT {...this.props.grid} />
             </div>
         );
     }

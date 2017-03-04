@@ -359,6 +359,10 @@ electron-download@^3.0.1:
     semver "^5.3.0"
     sumchecker "^1.2.0"
 
+electron-localshortcut@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/electron-localshortcut/-/electron-localshortcut-1.0.0.tgz#e9c1ba267c75376e1b254af206b9ff856360a67a"
+
 electron@^1.4.15:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/electron/-/electron-1.6.0.tgz#d1d12024fe4e8d14128eb9c73b8a5253324ced06"

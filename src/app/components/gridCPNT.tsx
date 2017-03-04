@@ -1,45 +1,25 @@
 import * as React from 'react';
-import {ButtonCPNT, Button} from './button';
-import {Grid} from '../grid';
+import ButtonCPNT from './buttonCPNT';
+import { Button, setActiveButtonCPNTs} from '../button';
+import { Grid, setActiveGridCPNT, activeKeycodes, renderButtons } from '../grid';
 import {config} from '../config';
 
-export default class GridCPNT extends React.Component<{grid: Grid}, {}> {
-    render() {
-        let gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(this.props.grid.buttons.length))).toString() + "%";
-        let style: React.CSSProperties = {
-            width: gridSize,
-            height: gridSize,
-            backgroundColor: "#e74c3c"
-        }
-        let renderedButtons: JSX.Element[] = [];
-        // let renderedButtons = this.props.grid.buttons.map((button, id) =>
-        //     <div className="button-container" style={style} key={id}><ButtonCPNT {...button}/></div>
-        // );
-        
-        this.props.grid.buttons.forEach((button, id) => {
-            let buttonStyle: React.CSSProperties = {...style};
-            if(button.color) {
-                buttonStyle.backgroundColor = button.color;
-            } else if (this.props.grid.colors) {
-                buttonStyle.backgroundColor = this.props.grid.colors[Math.floor(Math.random() * this.props.grid.colors.length)];;
-            } else if(config.colors) {
-                buttonStyle.backgroundColor = config.colors[Math.floor(Math.random() * config.colors.length)];;
-            } 
-            if (config.style) {
-                Object.assign(buttonStyle, config.style);
-            }
-            if (this.props.grid.style) {
-                Object.assign(buttonStyle, this.props.grid.style);
-            }
-            if (button.style) {
-                Object.assign(buttonStyle, button.style);
-            }
-            renderedButtons.push(<div className="button-container" style={buttonStyle} key={id}><ButtonCPNT {...button}/></div>);
-        });
+export interface ButtonStates {
+    keycode: JSX.Element;
+}
 
+export default class GridCPNT extends React.Component<Grid, {buttons: JSX.Element[]}> {
+    constructor(props: Grid) {
+        super(props);
+        let renderedButtons = renderButtons(this.props)
+        this.state = { buttons: renderedButtons};
+        setActiveGridCPNT(this);
+    }
+
+    render() {
         return (
             <div className="grid">
-                {renderedButtons}
+                {this.state.buttons}
             </div>
         );
     }

@@ -5,6 +5,8 @@ const { app,
         globalShortcut,
         ipcMain} = electron;
 
+const electronLocalshortcut = require('electron-localshortcut');
+
 const config = require(require("app-root-path") + "/" + "config");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -28,6 +30,14 @@ function toggleHide() {
         mainWindow.setPosition(pos.x - (mainWindow.getSize()[0]) / 2, pos.y - (mainWindow.getSize()[1]) / 2);
         mainWindow.show();
     }
+}
+
+function sendHotKey(key) {
+    mainWindow.webContents.send("keyPress", key);
+}
+
+function sendBack() {
+    mainWindow.webContents.send("keyBack");
 }
 
 function createWindow() {
@@ -69,6 +79,25 @@ function createWindow() {
             mainWindow.hide();
         });
     }
+    if (config.keycodeKeys) {
+        config.keycodeKeys.split("").forEach(function(key) {
+            electronLocalshortcut.register(key, () => {
+                sendHotKey(key);
+            });
+        });
+    } else {
+        for(let i = 0; i < 26; i++) {
+            electronLocalshortcut.register(String.fromCharCode(97 + i), () => {
+                sendHotKey(String.fromCharCode(97 + i));
+            });
+        }
+    }
+    electronLocalshortcut.register("`", () => {
+        sendBack();
+    }) 
+    electronLocalshortcut.register("Enter", () => {
+        sendBack();
+    })
 }
 
 // This method will be called when Electron has finished

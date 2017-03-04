@@ -1,10 +1,31 @@
 import * as React from 'react';
 import {renderGrid} from './render';
-import GridCPNT from './components/GridCPNT';
-import {Button} from './components/Button';
+import GridCPNT from './components/gridCPNT';
+import ButtonCPNT from './components/buttonCPNT';
+import {Button, setActiveButtonCPNTs} from './button';
 import * as fs from 'fs';
 import * as path from 'path';
 import {config} from './config';
+import keyGen from './lib/keyGen';
+
+export var activeGrid: Grid;
+
+export var activeGridCPNT: GridCPNT;
+
+export var activeKeycodes: string[];
+
+export interface Grid extends React.Props<any> {
+    buttons: Button[];
+    colors?: string[];
+    style?: React.CSSProperties;
+    highlightColor?: string;
+    properties: Properties;
+};
+
+export interface Properties {
+    root: Boolean;
+    parent?: Grid;
+}
 
 export type extensionTypes = "web"
 
@@ -16,34 +37,20 @@ export const extensions: { [id: string]: Function; } = {
     }
 }
 
-export var activeGrid: Grid;
-
-export interface Properties {
-    root: Boolean;
-    parent?: Grid;
-}
-
-export interface Grid {
-    buttons: Button[];
-    colors?: string[];
-    style?: React.CSSProperties;
-    properties: Properties;
-};
-
 export function formatGrid(grid: Grid): Grid {
     grid.properties = {root: false};
     grid.buttons.forEach((button) => {
         switch (button.type) {
             case "grid":
-                button.value = formatGrid(<Grid>button.value);
+                button.value = formatGrid(button.value as Grid);
                 break;
             case "long folder":
                 button.type = "grid";
-                button.value = formatGrid(dir2GridRecursive(<string>button.value));
+                button.value = formatGrid(dir2GridRecursive(button.value as string));
                 break;
             case "short folder":
                 button.type = "grid";
-                button.value = formatGrid(dir2Grid(<string>button.value));
+                button.value = formatGrid(dir2Grid(button.value as string));
                 break;
         }
 
@@ -57,12 +64,63 @@ export function gridBack(): void {
     }
 }
 
-export function loadGrid(grid: Grid): void {
-    setActiveGrid(grid);
-    renderGrid(grid);
-    console.log(grid);
-};
+export function setKeycodes(size: number) {
+    activeKeycodes = keyGen(2, size);
+}
 
+export function renderButtons(grid: Grid): JSX.Element[] {
+    let gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(grid.buttons.length))).toString() + "%";
+    let style: React.CSSProperties = {
+        width: gridSize,
+        height: gridSize,
+        backgroundColor: "#e74c3c"
+    }
+    let renderedButtons: JSX.Element[] = [];
+
+
+    grid.buttons.forEach((button, id) => {
+        let buttonStyle: React.CSSProperties = { ...style };
+        if (button.color) {
+            buttonStyle.backgroundColor = button.color;
+        } else if (grid.colors) {
+            buttonStyle.backgroundColor = grid.colors[Math.floor(Math.random() * grid.colors.length)];;
+        } else if (config.colors) {
+            buttonStyle.backgroundColor = config.colors[Math.floor(Math.random() * config.colors.length)];;
+        }
+        if (config.style) {
+            Object.assign(buttonStyle, config.style);
+        }
+        if (grid.style) {
+            Object.assign(buttonStyle, this.props.style);
+        }
+        if (button.style) {
+            Object.assign(buttonStyle, button.style);
+        }
+
+        button.keycode = activeKeycodes[id];
+        renderedButtons.push(<div className="button-container" style= { buttonStyle } key= { id } > <ButtonCPNT {...button } /></div>);
+    });
+    return renderedButtons;
+}
+
+export function setActiveGridCPNT(grid: GridCPNT) {
+    activeGridCPNT = grid;
+}
+
+export function loadGrid(grid: Grid): void {
+    if (activeGrid) {
+        grid.properties.parent = activeGrid;
+    }
+    setKeycodes(grid.buttons.length);
+    setActiveGrid(grid);
+    if (activeGridCPNT) {
+        let renderedButtons = renderButtons(grid);
+        activeGridCPNT.setState({ buttons: renderedButtons});
+    } else {
+        renderGrid(grid);
+    }
+
+};
 
 export function setActiveGrid(grid: Grid) {
     activeGrid = grid;
