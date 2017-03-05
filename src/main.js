@@ -74,30 +74,6 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
-    if(!config["hideFocus"]) {
-        mainWindow.on("blur", () => {
-            mainWindow.hide();
-        });
-    }
-    if (config.keycodeKeys) {
-        config.keycodeKeys.split("").forEach(function(key) {
-            electronLocalshortcut.register(key, () => {
-                sendHotKey(key);
-            });
-        });
-    } else {
-        for(let i = 0; i < 26; i++) {
-            electronLocalshortcut.register(String.fromCharCode(97 + i), () => {
-                sendHotKey(String.fromCharCode(97 + i));
-            });
-        }
-    }
-    electronLocalshortcut.register("`", () => {
-        sendBack();
-    }) 
-    electronLocalshortcut.register("Enter", () => {
-        sendBack();
-    })
 }
 
 // This method will be called when Electron has finished
