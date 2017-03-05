@@ -5,7 +5,12 @@ import ButtonCPNT from './button';
 export default class GridCPNT extends React.Component<gridTypes.gridProps, gridTypes.gridStates> {
     constructor(props: gridTypes.gridProps) {
         super(props);
-        this.state = { buttons: props.buttons }
+        console.log("states");
+        console.log(props.buttons);
+        
+        let states: gridTypes.gridStates = { buttons: props.buttons.map((button) => { return button.ButtonCPNT }) }
+        
+        this.state = states;
     }
 
     render() {
