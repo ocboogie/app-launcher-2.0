@@ -30,3 +30,9 @@ npm start
 
 * [React](https://facebook.github.io/react/)
 * [Typescript](https://www.typescriptlang.org/)
+
+## Todo
+- [ ] config.json error checking
+- [ ] Log errors to the user
+- [ ] Theme support
+- [ ] Search
