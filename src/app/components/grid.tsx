@@ -1,16 +1,20 @@
 import * as React from 'react';
 import * as gridTypes from '../typings/grid';
+import * as buttonTypes from '../typings/button';
+import { setActiveGridCPNT } from '../globals';
 import ButtonCPNT from './button';
+import { renderButtons } from '../lib/button';
+import Grid from '../objects/grid';
 
-export default class GridCPNT extends React.Component<gridTypes.gridProps, gridTypes.gridStates> {
-    constructor(props: gridTypes.gridProps) {
+
+export default class GridCPNT extends React.Component<Grid, gridTypes.gridStates> {
+    constructor(props: Grid) {
         super(props);
-        console.log("states");
-        console.log(props.buttons);
         
-        let states: gridTypes.gridStates = { buttons: props.buttons.map((button) => { return button.ButtonCPNT }) }
-        
-        this.state = states;
+        let renderedButtons: buttonTypes.buttonCPNT[] = renderButtons(props.gridFormattedJSON.buttons);
+
+        this.state = { buttons: renderedButtons };
+        setActiveGridCPNT(this);
     }
 
     render() {

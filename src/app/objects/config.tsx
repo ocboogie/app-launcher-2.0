@@ -13,7 +13,7 @@ export default class Config {
         
     }
 
-    format(): configTypes.configFormattedJSON {
+    private format(): configTypes.configFormattedJSON {
         let formattedJSON: configTypes.configFormattedJSON = { rootGrid: new Grid(this.JSON.rootGrid) };
         return formattedJSON;
     }

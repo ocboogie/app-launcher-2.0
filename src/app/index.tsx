@@ -1,28 +1,21 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as config from './config';
-import {ipcRenderer, webFrame} from 'electron';
+import { initConfig } from './lib/config';
+import { activeConfig } from './globals';
+import { ipcRenderer, webFrame } from 'electron';
 import GridCPNT from './components/grid';
+import Grid from './objects/grid';
+import { initGrid, loadGrid } from './lib/grid';
+import * as rootPath from 'app-root-path';
+
 
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
 ipcRenderer.on("show", (event) => {
-    // loadGrid(config.rootGrid);
+    loadGrid(activeConfig.formattedJSON.rootGrid);
 });
 
-config.initConfig();
+initConfig(require(`${rootPath}/config`));
 
-
-console.log(config.activeConfig.formattedJSON.rootGrid.GridCPNT);
-
-
-ReactDOM.render(
-    <GridCPNT {...config.activeConfig.formattedJSON.rootGrid.gridFormattedJSON}/>,
-    document.getElementById('content')
-)
-
-// let config: Button = jsonfile.readFileSync("../config.json");
-
-
-
+initGrid(activeConfig.formattedJSON.rootGrid);

@@ -3,29 +3,32 @@ import * as gridTypes from "../typings/grid";
 import GridCPNT from '../components/grid';
 import Button from '../objects/button';
 import ButtonCPNT from '../components/button';
+import { formatGrid } from '../lib/grid';
+import { loadGrid } from '../lib/grid';
+import { hideWindow } from '../lib/window';
 
 
-export default class Gird {
+export default class Grid {
     gridJSON: gridTypes.gridJSON;
     gridFormattedJSON: gridTypes.gridFormattedJSON;
-    GridCPNT: gridTypes.gridCPNT;
+    parentGrid: Grid;
+    isRoot: boolean;
     
     constructor(gridJSON: gridTypes.gridJSON) {
         this.gridJSON = gridJSON;
-        this.gridFormattedJSON = this.format(gridJSON);
-        this.GridCPNT = this.render(this.gridFormattedJSON);
+        this.gridFormattedJSON = formatGrid(gridJSON);
+        this.isRoot = false;
     }
 
-    private format(gridJSON: gridTypes.gridJSON): gridTypes.gridFormattedJSON {
-        let gridFormattedJSON: gridTypes.gridFormattedJSON = {
-            buttons: gridJSON.buttons.map((button) => {return new Button(button)}),
-        };
-        return gridFormattedJSON;
+    setParent(grid: Grid) {
+        this.parentGrid = grid;
     }
-
-    private render(gridFormattedJSON: gridTypes.gridFormattedJSON): gridTypes.gridCPNT {
-        console.log(GridCPNT);
-        
-        return <GridCPNT {...gridFormattedJSON} />;
+    
+    back(hide = false) {
+        if(!this.isRoot) {
+            loadGrid(this.parentGrid);
+        } else if (hide) {
+            hideWindow();
+        }
     }
 }
