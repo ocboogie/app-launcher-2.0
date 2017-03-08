@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 
 var tsProject = typescript.createProject('tsconfig.json');
 
-const mainjs = "src/main.js";
+const mainjs = ["src/main.js", "src/checks.js"];
 const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
 const tsFiles = ["src/app/**/*.tsx", "src/app/**/*.ts"];
