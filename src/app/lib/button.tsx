@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as buttonTypings from '../typings/button';
+import * as buttonTypings from '../../typings/button';
 import Grid from '../objects/grid';
-import * as gridTypes from '../typings/grid';
+import * as gridTypes from '../../typings/grid';
 import { exec } from 'child_process';
 import * as os from 'os';
 import * as open from 'open';

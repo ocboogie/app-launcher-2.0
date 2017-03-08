@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as gridTypes from "../typings/grid";
+import * as gridTypes from "../../typings/grid";
 import GridCPNT from '../components/grid';
 import Button from '../objects/button';
 import ButtonCPNT from '../components/button';

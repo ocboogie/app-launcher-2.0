@@ -1,6 +1,6 @@
-import GridCPNT from '../components/grid';
+import GridCPNT from '../app/components/grid';
 import * as gridTypes from './grid';
-import Grid from '../objects/grid';
+import Grid from '../app/objects/grid';
 
 
 interface configJSON {

@@ -1,6 +1,6 @@
 import { setActiveGrid, activeGridCPNT, activeGrid } from '../globals';
 import Grid from '../objects/grid';
-import * as gridTypes from '../typings/grid';
+import * as gridTypes from '../../typings/grid';
 import Button from '../objects/button';
 import { renderButtons } from './button'
 import render from './render';

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as gridTypes from '../typings/grid';
-import * as buttonTypes from '../typings/button';
+import * as gridTypes from '../../typings/grid';
+import * as buttonTypes from '../../typings/button';
 import { setActiveGridCPNT } from '../globals';
 import ButtonCPNT from './button';
 import { renderButtons } from '../lib/button';

@@ -1,5 +1,5 @@
-import * as buttonTypings from '../typings/button';
-import * as gridTypes from '../typings/grid';
+import * as buttonTypings from '../../typings/button';
+import * as gridTypes from '../../typings/grid';
 import ButtonCPNT from '../components/button';
 import Grid from './grid';
 import { formatButton } from '../lib/button';

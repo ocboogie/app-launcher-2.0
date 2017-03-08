@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import GridCPNT from '../components/grid';
-import * as gridTypes from '../typings/grid';
+import * as gridTypes from '../../typings/grid';
 import App from '../components/app';
 import Grid from '../objects/grid';
 

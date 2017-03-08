@@ -1,6 +1,6 @@
 import Config from '../objects/config';
 import { setActiveConfig } from '../globals';
-import * as configTypings from '../typings/config'
+import * as configTypings from '../../typings/config'
 import Grid from '../objects/grid';
 
 

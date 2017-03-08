@@ -1,9 +1,9 @@
 import { Props } from 'react';
-import ButtonCPNT from '../components/button';
-import GridCPNT from '../components/grid';
-import Grid from '../objects/grid';
+import ButtonCPNT from '../app/components/button';
+import GridCPNT from '../app/components/grid';
+import Grid from '../app/objects/grid';
 import * as gridTypes from './grid';
-import Button from '../objects/button';
+import Button from '../app/objects/button';
 
 
 type unformattedButtonTypes = "url" | "app" | "cmd" | "grid" | "short folder" | "long folder";

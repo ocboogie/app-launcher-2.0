@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Grid from '../objects/grid';
-import GridCPNT from '../components/grid';
-import Button from '../objects/button';
+import Grid from '../app/objects/grid';
+import GridCPNT from '../app/components/grid';
+import Button from '../app/objects/button';
 import * as buttonTypes from './button';
-import ButtonCPNT from '../components/button';
+import ButtonCPNT from '../app/components/button';
 
 
 interface gridStates {

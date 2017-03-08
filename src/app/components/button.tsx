@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as buttonTypes from '../typings/button';
+import * as buttonTypes from '../../typings/button';
 import Button from '../objects/button';
 
 

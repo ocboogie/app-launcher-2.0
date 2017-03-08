@@ -1,5 +1,5 @@
 import Config from './objects/config';
-import * as gridTypes from './typings/grid';
+import * as gridTypes from '../typings/grid';
 import Grid from './objects/grid';
 import GridCPNT from './components/grid';
 

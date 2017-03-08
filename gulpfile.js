@@ -4,9 +4,10 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass');
 
-var tsProject = typescript.createProject('tsconfig.json');
+var tsAppProject = typescript.createProject('tsconfig.web.json');
+var tsElectronProject = typescript.createProject('tsconfig.electron.json');
 
-const mainjs = ["src/main.js", "src/checks.js"];
+const mainjs = ["src/**/*.ts", "!src/app/**/*"];
 const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
 const tsFiles = ["src/app/**/*.tsx", "src/app/**/*.ts"];
@@ -30,14 +31,19 @@ gulp.task('watch', function() {
 });
 
 gulp.task('mainjs', function() {
-    return gulp.src(mainjs)
+    var tsResult = tsElectronProject.src()
+        .pipe(tsElectronProject());
+
+    return tsResult.js
         .pipe(gulp.dest('dist'));
+    // return gulp.src(mainjs)
+    //     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('ts', function() {
-    var tsResult = tsProject.src()
+    var tsResult = tsAppProject.src()
         .pipe(sourcemaps.init())
-        .pipe(tsProject());
+        .pipe(tsAppProject());
 
     return tsResult.js
         .pipe(sourcemaps.write())

@@ -1,4 +1,4 @@
-import * as configTypes from '../typings/config';
+import * as configTypes from '../../typings/config';
 import Grid from './grid';
 import GridCPNT from '../components/grid';
 import { formatConfig } from '../lib/config';
