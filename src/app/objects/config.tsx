@@ -1,6 +1,7 @@
 import * as configTypes from '../typings/config';
 import Grid from './grid';
 import GridCPNT from '../components/grid';
+import { formatConfig } from '../lib/config';
 
 
 export default class Config {
@@ -9,13 +10,10 @@ export default class Config {
 
     constructor(config: configTypes.configJSON) {
         this.JSON = config;
-        this.formattedJSON = this.format();
+        this.formattedJSON = formatConfig(this);
         
     }
 
-    private format(): configTypes.configFormattedJSON {
-        let formattedJSON: configTypes.configFormattedJSON = { rootGrid: new Grid(this.JSON.rootGrid) };
-        return formattedJSON;
-    }
+
     
 }
