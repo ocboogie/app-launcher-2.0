@@ -2,7 +2,6 @@ node_modules
 dist
 yarn-error.log
 .vscode
-typings
 npm-debug.log
 config.json
 .DS_Store
