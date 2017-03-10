@@ -4,20 +4,18 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass');
 
-var tsAppProject = typescript.createProject('tsconfig.web.json');
-var tsElectronProject = typescript.createProject('tsconfig.electron.json');
+const tsRendererProject = typescript.createProject('tsconfig.web.json');
+const tsMainProject = typescript.createProject('tsconfig.electron.json');
 
-const mainjs = ["src/**/*.ts", "!src/app/**/*"];
 const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
-const tsFiles = ["src/app/**/*.tsx", "src/app/**/*.ts"];
+const mainFiles = ["src/main/**/*.ts"];
+const rendererFiles = ["src/renderer/**/*.tsx", "src/renderer/**/*.ts"];
 
 gulp.task('default', function(done) {
     inSequence(
-        [
-            'ts',
-            'mainjs'
-        ],
+        'mainjs',
+        'ts',
         'html',
         'sass'
     );
@@ -31,20 +29,18 @@ gulp.task('watch', function() {
 });
 
 gulp.task('mainjs', function() {
-    var tsResult = tsElectronProject.src()
-        .pipe(tsElectronProject());
-
+    let tsResult = tsMainProject.src()
+        .pipe(tsMainProject());
     return tsResult.js
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/main'));
     // return gulp.src(mainjs)
     //     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('ts', function() {
-    var tsResult = tsAppProject.src()
+    let tsResult = tsRendererProject.src()
         .pipe(sourcemaps.init())
-        .pipe(tsAppProject());
-
+        .pipe(tsRendererProject());
     return tsResult.js
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/js'));
@@ -62,7 +58,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('mainjs:watch', function() {
-    gulp.watch(mainjs, ['mainjs']);
+    gulp.watch(mainFiles, ['mainjs']);
 });
 
 gulp.task('html:watch', function() {
@@ -70,7 +66,7 @@ gulp.task('html:watch', function() {
 });
 
 gulp.task('ts:watch', function() {
-    gulp.watch(tsFiles, ['ts']);
+    gulp.watch(rendererFiles, ['ts']);
 });
 
 gulp.task('sass:watch', function() {

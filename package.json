@@ -4,7 +4,7 @@
   "description": "A customizable app launcher",
   "main": "dist/main",
   "scripts": {
-    "start": "electron dist/main.js",
+    "start": "electron dist/main/main.js",
     "build": "gulp",
     "watch": "npm run build && gulp watch"
   },
@@ -19,19 +19,26 @@
     "@types/node": "^7.0.5",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
+    "@types/react-redux": "^4.4.37",
+    "@types/redux-logger": "^2.6.34",
+    "@types/seamless-immutable": "^6.1.2",
     "electron": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",
     "gulp-typescript": "^3.1.4",
+    "redux-logger": "^2.8.2",
     "run-sequence": "^1.2.2",
     "typescript": "^2.1.6"
   },
   "dependencies": {
-    "app-root-path": "^2.0.1",
+    "electron-is-accelerator": "^0.1.1",
     "electron-localshortcut": "^1.0.0",
     "electron-reload": "^1.1.0",
-    "open": "0.0.5",
+    "gaze": "^1.1.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }

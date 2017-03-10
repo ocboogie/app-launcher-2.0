@@ -1,8 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": "src/",
+    "rootDir": "./src/main",
     "outDir": "./dist/",
+    "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es6",
@@ -13,12 +14,9 @@
     ]
   },
   "files": [
-    "typings.d.ts"
-  ],
-  "exclude": [
-    "src/app/**/*"
+    "./typings.d.ts"
   ],
   "include": [
-    "src/**/*"
+    "src/main/**/*.ts"
   ]
 }

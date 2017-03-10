@@ -1,12 +1,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": "src/app/",
-    "outDir": "./dist/",
+    "rootDir": "./src/renderer",
+    "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es6",
+    "experimentalDecorators": true,
     "jsx": "react",
     "lib": [
       "dom",
@@ -14,9 +15,10 @@
     ]
   },
   "files": [
-    "typings.d.ts"
+    "./typings.d.ts"
   ],
   "include": [
-    "src/app/**/*"
+    "./src/renderer/**/*.ts",
+    "./src/renderer/**/*.tsx"
   ]
 }

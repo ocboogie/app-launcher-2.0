@@ -40,3 +40,26 @@ html, body {
 .highlighted {
     background-color: blue;
 }
+
+@keyframes fadeout {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+
+.notify {
+    color: #ecf0f1;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 10vmin;
+    opacity:0;
+    transform: translate(-50%, -50%);
+    animation-timing-function: ease-in;
+    animation: fadeout 1s;
+    white-space: nowrap;
+}
