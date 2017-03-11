@@ -50,6 +50,13 @@ function loadConfig(path: string) {
     }
 }
 
+export function reloadConfig(path: string = configPath) {
+    loadConfig(path);
+    if (mainWindow) {
+        mainWindow.webContents.send("config change");
+    }
+}
+
 function watch(path: string) {
     gaze(path, function(err: Error) {
         if (err) {
@@ -58,11 +65,7 @@ function watch(path: string) {
         
         this.on('changed', () => {
             try {
-                
-                loadConfig(path);
-                if (mainWindow) {
-                    mainWindow.webContents.send("config change");
-                }
+                reloadConfig(path);
             } catch (err) {
                 displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
             }

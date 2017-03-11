@@ -7,23 +7,23 @@ const reducer = (state: Grid.formattedJSON = <Grid.formattedJSON>{}, action: Act
     if (action) {
         switch (action.type) {
             case "GRID_BACK":
-                if (state.parent) {
+                if (!state.isRoot) {
                     return { ...state.parent }
                 } else {
-                    ipcRenderer.send("hide");
+                    ipcRenderer.send("hide window");
+                    return { ...state}
                 }
             case "GRID_ROOT":
                 return { ...findRoot(state) }
             case "GRID_LOAD":
                 if (Object.keys(state).length !== 0 && state.constructor === Object) {
-                    action.payload.parent = state;
-                    return { ...state, ...action.payload }
+                    return { ...state, ...action.payload, parent: {...state} }
                 } else {
                     return { ...state, ...action.payload }
                 }
             case "GRID_INIT":
             case "GRID_RELOAD":
-                return { ...state, ...action.payload }
+                return { ...action.payload }
         }
     }
     return state

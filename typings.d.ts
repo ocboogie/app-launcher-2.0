@@ -15,7 +15,7 @@ interface StoreJSON {
     }
 }
 
-type ReduxTypes = "CONFIG_INIT" | "CONFIG_RELOAD" | "GRID_INIT" | "GRID_RELOAD" | "GRID_LOAD" | "GRID_BACK" | "GRID_ROOT" | "NOTIFY_DISPLAY" | "NOTIFY_DESTROY";
+type ReduxTypes = "INIT" | "CONFIG_INIT" | "CONFIG_RELOAD" | "GRID_INIT" | "GRID_RELOAD" | "GRID_LOAD" | "GRID_BACK" | "GRID_ROOT" | "NOTIFY_DISPLAY" | "NOTIFY_DESTROY";
 
 interface Action {
     type: ReduxTypes;

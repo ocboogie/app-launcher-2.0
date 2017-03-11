@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { ipcRenderer } from 'electron';
 
 import GridCPNT from './grid';
 import NotifyCPNT from './notify';
-import { backGrid } from '../actions/grid';
+import { backGrid, loadGrid } from '../actions/grid';
 import store from '../store';
 
 

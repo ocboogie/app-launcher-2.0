@@ -32,6 +32,14 @@ app.on('ready', () => {
     tray = new Tray(join(__dirname, "../../assets/tray.png"));
     const contextMenu = Menu.buildFromTemplate([
         {
+            label: 'Reload config',
+            click() { config.reloadConfig() }
+        },
+        {
+            label: 'Reload window',
+            click() { app.relaunch(); app.quit() }
+        },
+        {
             role: 'quit'
         }
     ])

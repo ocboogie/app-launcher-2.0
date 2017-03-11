@@ -11,7 +11,7 @@ import { display } from '../actions/notify';
 export function formatButton(button: Button.JSON) {
     let buttonFormatted: Button.formattedJSON = <Button.formattedJSON>{ ...button };
     if (button.type === "grid") {
-        button.value = formatGrid(<Grid.JSON>button.value, false);
+        buttonFormatted.value = formatGrid(<Grid.JSON>button.value, false);
     }
     return buttonFormatted;
 }
@@ -44,7 +44,6 @@ const buttonTypes: { [id: string]: { run: (Button: Button.formattedJSON, close: 
             } else {
                 exec(`\"${buttonJSON.value}\"`, (error, stdout, stderr) => {
                     if (error) {
-                        console.log("TEST");
                         store.dispatch(display("Error"));
                         ipcRenderer.send("show window")
                         console.error(`exec error: ${error}`);

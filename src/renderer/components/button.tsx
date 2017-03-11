@@ -12,6 +12,8 @@ export default class ButtonCPNT extends React.Component<Button.formattedJSON, {}
 
     handleClick() {
         // this.props.run();
+        console.log(this.props);
+        
         runButton(this.props);
     }
 
