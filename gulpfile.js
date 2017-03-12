@@ -14,30 +14,30 @@ const rendererFiles = ["src/renderer/**/*.tsx", "src/renderer/**/*.ts"];
 
 gulp.task('default', function(done) {
     inSequence(
-        'mainjs',
-        'ts',
+        'mainTS',
+        'webTS',
         'html',
         'sass'
     );
 });
 
 gulp.task('watch', function() {
-    gulp.start('mainjs:watch');
+    gulp.start('mainTS:watch');
     gulp.start('html:watch');
-    gulp.start('ts:watch');
+    gulp.start('webTS:watch');
     gulp.start('sass:watch');
 });
 
-gulp.task('mainjs', function() {
+gulp.task('mainTS', function() {
     let tsResult = tsMainProject.src()
         .pipe(tsMainProject());
     return tsResult.js
         .pipe(gulp.dest('dist/main'));
-    // return gulp.src(mainjs)
+    // return gulp.src(mainTS)
     //     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('ts', function() {
+gulp.task('webTS', function() {
     let tsResult = tsRendererProject.src()
         .pipe(sourcemaps.init())
         .pipe(tsRendererProject());
@@ -57,16 +57,16 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('mainjs:watch', function() {
-    gulp.watch(mainFiles, ['mainjs']);
+gulp.task('mainTS:watch', function() {
+    gulp.watch(mainFiles, ['mainTS']);
 });
 
 gulp.task('html:watch', function() {
     gulp.watch(htmlFiles, ['html']);
 });
 
-gulp.task('ts:watch', function() {
-    gulp.watch(rendererFiles, ['ts']);
+gulp.task('webTS:watch', function() {
+    gulp.watch(rendererFiles, ['webTS']);
 });
 
 gulp.task('sass:watch', function() {
