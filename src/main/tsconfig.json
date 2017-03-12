@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "../../dist/",
+    "lib": [
+      "dom",
+      "es7"
+    ]
+  },
+  "files": [
+    "../../typings.d.ts"
+  ],
+  "include": [
+    "./**/*.ts"
+  ]
+}

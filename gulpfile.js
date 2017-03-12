@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass');
 
-const tsRendererProject = typescript.createProject('tsconfig.web.json');
-const tsMainProject = typescript.createProject('tsconfig.electron.json');
+const tsRendererProject = typescript.createProject('./src/renderer/tsconfig.json');
+const tsMainProject = typescript.createProject('./src/main/tsconfig.json');
 
 const htmlFiles = "src/**/*.html";
 const stylesheetFiles = "src/stylesheets/**/*.scss";
