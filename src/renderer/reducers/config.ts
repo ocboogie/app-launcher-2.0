@@ -5,7 +5,7 @@ const reducer = (state = {}, action: Action) => {
         switch (action.type) {
             case "CONFIG_INIT":
             case "CONFIG_RELOAD":
-                return { ...state, ...action.payload}
+                return { ...action.payload}
         }
     }
     return state

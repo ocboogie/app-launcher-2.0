@@ -1,38 +1,49 @@
 import { homedir } from 'os';
 import { resolve } from 'path';
-import { readFileSync, existsSync, writeFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 
 import { dialog } from 'electron';
 import * as gaze from 'gaze';
+import * as chokidar from 'chokidar';
 
 import { checkConfig } from './checkConfig';
 import { displayError } from './error';
 import defaultConfig from './defaultConfig';
+import { deactivate, changeFolder, setMainLauncherWindow, watchingFolder } from './launcher';
 
 
 const configDir = homedir();
-const configPath = resolve(configDir, '.launcher.json')
+const configPath = resolve(configDir, '.launcher.json');
 let mainWindow: Electron.BrowserWindow;
 
 export let config: Config.JSON;
 
 export function setMainWindow(window: Electron.BrowserWindow) {
     mainWindow = window;
+    setMainLauncherWindow(window);
 }
 
 function setConfig(_config: Config.JSON | null) {
     if (_config) {
-        _config = Object.assign(defaultConfig, _config);
-
-        config = _config;
+        _config = {...defaultConfig, ..._config};
+        console.log(`${watchingFolder}|${_config.launcherFolder}`);
+        
+        if ((_config && !_config.rootGrid) && watchingFolder !== _config.launcherFolder) {
+            changeFolder(_config.launcherFolder);
+            if (mainWindow) {
+                mainWindow.webContents.send("reload folder changed");
+            }
+        } else if (_config && _config.rootGrid) {
+            deactivate();
+        }
+        config = {..._config};
     } else {
-        config = defaultConfig;
+        config = {...defaultConfig};
     }
 }
 
 function loadConfig(path: string) {
     let json = readFileSync(path, 'utf8');
-    
     if (json) {
         let cfg = <Config.JSON>JSON.parse(json);
         let err = checkConfig(cfg);
@@ -58,19 +69,25 @@ export function reloadConfig(path: string = configPath) {
 }
 
 function watch(path: string) {
-    gaze(path, function(err: Error) {
-        if (err) {
-            throw err;
+    chokidar.watch(path).on('change', () => {
+        try {
+            reloadConfig(path);
+        } catch (err) {
+            displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
         }
-        
-        this.on('changed', () => {
-            try {
-                reloadConfig(path);
-            } catch (err) {
-                displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
-            }
-        })
-    })
+    });
+    // gaze(path, function(err: Error) {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     this.on('changed', () => {
+    //         try {
+    //             reloadConfig(path);
+    //         } catch (err) {
+    //             displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
+    //         }
+    //     })
+    // })
 }
 
 export function getConfig() {

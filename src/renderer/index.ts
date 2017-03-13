@@ -11,21 +11,31 @@ import { initGrid, reloadGrid, rootGrid } from './actions/grid';
 import { display } from './actions/notify';
 import * as config from './config';
 import render from './lib/render';
-import { formatGrid } from './lib/grid';
+import { formatGrid, dir2Grid, dir2GridRecursive } from './lib/grid';
 import store from './store';
 
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
-
-store.dispatch(initConfig(config.getConfig()));
-store.dispatch(initGrid(formatGrid(config.getConfig().rootGrid)))
-config.subscribe(() => {
-    store.dispatch(reloadConfig(config.getConfig()))
-    store.dispatch(reloadGrid(formatGrid(config.getConfig().rootGrid)))
-    store.dispatch(display("Reloaded config"))
+ipcRenderer.on("reload folder changed", () => {
+    store.dispatch(reloadGrid(dir2GridRecursive(config.getConfig().launcherFolder)));
+    store.dispatch(display("Reloaded launcher folder"));
 });
 
+store.dispatch(initConfig(config.getConfig()));
+if (!config.getConfig().rootGrid) {
+    store.dispatch(initGrid(dir2GridRecursive(config.getConfig().launcherFolder)));
+} else {
+    store.dispatch(initGrid(formatGrid(config.getConfig().rootGrid)));
+}
+
+config.subscribe(() => {
+    store.dispatch(reloadConfig(config.getConfig()));
+    if (config.getConfig().rootGrid) {
+        store.dispatch(reloadGrid(formatGrid(config.getConfig().rootGrid)));
+    }
+    store.dispatch(display("Reloaded config"));
+});
 
 
 ipcRenderer.on("hide", (event) => {

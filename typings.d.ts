@@ -15,6 +15,7 @@ interface StoreJSON {
     }
 }
 
+type ExtensionTypes = "web"
 type ReduxTypes = "INIT" | "CONFIG_INIT" | "CONFIG_RELOAD" | "GRID_INIT" | "GRID_RELOAD" | "GRID_LOAD" | "GRID_BACK" | "GRID_ROOT" | "NOTIFY_DISPLAY" | "NOTIFY_DESTROY";
 
 interface Action {
@@ -31,6 +32,7 @@ declare namespace Config {
         debug?: boolean;
         hotkey: string;
         alwaysOnTop: boolean;
+        launcherFolder: string;
     }
 
     interface formattedJSON {
@@ -38,6 +40,7 @@ declare namespace Config {
         buttonColors?: string[];
         style?: React.CSSProperties;
         debug?: boolean;
+        launcherFolder: string;
     }
 
 }
