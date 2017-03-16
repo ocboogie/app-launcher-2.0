@@ -5,8 +5,6 @@ import { ipcRenderer } from 'electron';
 import GridCPNT from './grid';
 import NotifyCPNT from './notify';
 import { backGrid, loadGrid } from '../actions/grid';
-import store from '../store';
-
 
 class LayoutC extends React.Component<any, any> {
     constructor(props: any) {
@@ -16,7 +14,7 @@ class LayoutC extends React.Component<any, any> {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(e: any) {
-        store.dispatch(backGrid());
+        this.props.backGrid();
         // activeGrid.back(true)
         // if (activeGrid.properties.root) {
         //     ipcRenderer.send("hide");
@@ -34,6 +32,16 @@ class LayoutC extends React.Component<any, any> {
         );
     }
 }
-const mapStateToProps = (state: StoreJSON) => ({ style: state.config.style});
-const Layout = connect(mapStateToProps)(LayoutC);
+
+const mapStateToProps = (state: StoreJSON) => ({ style: state.config.style });
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        backGrid: () => {
+            dispatch(backGrid())
+        }
+    }
+};
+
+const Layout = connect(mapStateToProps, mapDispatchToProps)(LayoutC);
 export default Layout;

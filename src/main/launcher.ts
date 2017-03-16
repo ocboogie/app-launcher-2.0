@@ -3,7 +3,6 @@ import * as path from 'path';
 
 import { resolve } from 'path';
 
-import * as gaze from 'gaze';
 import * as chokidar from 'chokidar';
 
 import { displayError } from './error';
@@ -23,6 +22,7 @@ function watch(path: string) {
             mainWindow.webContents.send("reload folder changed");
         }
     });
+    launcherFolder.on('error', (error: any) => { mainWindow.webContents.send("reload folder changed"); watch(path) })
 }
 
 export function setMainLauncherWindow(_mainWindow: Electron.BrowserWindow) {

@@ -3,7 +3,7 @@ import { shell, ipcRenderer } from 'electron';
 import { exec } from 'child_process';
 
 import { loadGrid } from '../actions/grid';
-import store from '../store';
+import { getStore } from '../store/index';
 import ButtonCPNT from '../components/button';
 import { formatGrid } from './grid';
 import { display } from '../actions/notify';
@@ -35,7 +35,7 @@ const buttonTypes: { [id: string]: { run: (Button: Button.formattedJSON, close: 
             if (process.platform === "darwin") {
                 exec(`open \"${buttonJSON.value}\"`, (error, stdout, stderr) => {
                     if (error) {
-                        store.dispatch(display("Error"));
+                        getStore().dispatch(display("Error"));
                         ipcRenderer.send("show window")
                         console.error(`exec error: ${error}`);
                         return;
@@ -44,7 +44,7 @@ const buttonTypes: { [id: string]: { run: (Button: Button.formattedJSON, close: 
             } else {
                 exec(`\"${buttonJSON.value}\"`, (error, stdout, stderr) => {
                     if (error) {
-                        store.dispatch(display("Error"));
+                        getStore().dispatch(display("Error"));
                         ipcRenderer.send("show window")
                         console.error(`exec error: ${error}`);
                         return;
@@ -58,7 +58,7 @@ const buttonTypes: { [id: string]: { run: (Button: Button.formattedJSON, close: 
             close();
             exec(`${buttonJSON.value}`, (error, stdout, stderr) => {
                 if (error) {
-                    store.dispatch(display("Error"));
+                    getStore().dispatch(display("Error"));
                     ipcRenderer.send("show window")
                     console.error(`exec error: ${error}`);
                     return;
@@ -68,7 +68,7 @@ const buttonTypes: { [id: string]: { run: (Button: Button.formattedJSON, close: 
     },
     "grid": {
         run: (buttonJSON: Button.formattedJSON, close: () => void) => {
-            store.dispatch(loadGrid(<Grid.formattedJSON>buttonJSON.value));
+            getStore().dispatch(loadGrid(<Grid.formattedJSON>buttonJSON.value));
         }
     },
     "url": {

@@ -3,7 +3,6 @@ import { resolve } from 'path';
 import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 
 import { dialog } from 'electron';
-import * as gaze from 'gaze';
 import * as chokidar from 'chokidar';
 
 import { checkConfig } from './checkConfig';

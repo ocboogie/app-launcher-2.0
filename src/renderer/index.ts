@@ -5,17 +5,19 @@ import { Provider } from 'react-redux';
 import * as Redux from 'redux';
 
 import Layout from './components/layout';
-import createStore from './store';
 import { initConfig, reloadConfig } from './actions/config';
 import { initGrid, reloadGrid, rootGrid } from './actions/grid';
 import { display } from './actions/notify';
 import * as config from './config';
 import render from './lib/render';
 import { formatGrid, dir2Grid, dir2GridRecursive } from './lib/grid';
-import store from './store';
+import { initStore, getStore} from './store/index';
 
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
+initStore();
+
+let store = getStore();
 
 ipcRenderer.on("reload folder changed", () => {
     store.dispatch(reloadGrid(dir2GridRecursive(config.getConfig().launcherFolder)));
