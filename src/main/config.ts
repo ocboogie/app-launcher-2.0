@@ -25,8 +25,6 @@ export function setMainWindow(window: Electron.BrowserWindow) {
 function setConfig(_config: Config.JSON | null) {
     if (_config) {
         _config = {...defaultConfig, ..._config};
-        console.log(`${watchingFolder}|${_config.launcherFolder}`);
-        
         if ((_config && !_config.rootGrid) && watchingFolder !== _config.launcherFolder) {
             changeFolder(_config.launcherFolder);
             if (mainWindow) {
@@ -38,6 +36,7 @@ function setConfig(_config: Config.JSON | null) {
         config = {..._config};
     } else {
         config = {...defaultConfig};
+        changeFolder(defaultConfig.launcherFolder);
     }
 }
 
@@ -75,18 +74,6 @@ function watch(path: string) {
             displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
         }
     });
-    // gaze(path, function(err: Error) {
-    //     if (err) {
-    //         throw err;
-    //     }
-    //     this.on('changed', () => {
-    //         try {
-    //             reloadConfig(path);
-    //         } catch (err) {
-    //             displayError(`An error occurred loading your configuration (${configPath}): ${err.message}`)
-    //         }
-    //     })
-    // })
 }
 
 export function getConfig() {
