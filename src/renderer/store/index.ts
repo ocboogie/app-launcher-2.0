@@ -11,7 +11,8 @@ export function getStore(): Redux.Store<StoreJSON> {
 }
 
 export function initStore() {
-    if (process.env.NODE_ENV === 'production') {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV.trim() === 'production') {
         store = storeForProduction();
     } else {
         store = storeForDevelopment();

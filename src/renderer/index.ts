@@ -1,3 +1,6 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path'
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ipcRenderer, webFrame } from 'electron';
@@ -11,7 +14,14 @@ import { display } from './actions/notify';
 import * as config from './config';
 import render from './lib/render';
 import { formatGrid, dir2Grid, dir2GridRecursive } from './lib/grid';
-import { initStore, getStore} from './store/index';
+import { initStore, getStore } from './store/index';
+
+try {
+    let file = readFileSync(resolve(__dirname + "/../../assets/env"), 'utf8');
+    process.env.NODE_ENV = file;
+} catch(e) {
+    process.env.NODE_ENV = 'development';
+}
 
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
@@ -42,8 +52,6 @@ config.subscribe(() => {
 
 ipcRenderer.on("hide", (event) => {
     store.dispatch(rootGrid());
-    // loadGrid(activeConfig.formattedJSON.rootGrid);
 });
 
 render(store);
-

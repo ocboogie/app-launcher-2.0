@@ -1,8 +1,9 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     inSequence = require('run-sequence'),
     typescript = require('gulp-typescript'),
     sourcemaps = require('gulp-sourcemaps'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    fs = require('fs');
 
 const tsRendererProject = typescript.createProject('./src/renderer/tsconfig.json');
 const tsMainProject = typescript.createProject('./src/main/tsconfig.json');
@@ -33,8 +34,6 @@ gulp.task('mainTS', function() {
         .pipe(tsMainProject());
     return tsResult.js
         .pipe(gulp.dest('dist/main'));
-    // return gulp.src(mainTS)
-    //     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('webTS', function() {
@@ -55,6 +54,14 @@ gulp.task('sass', function() {
     return gulp.src(stylesheetFiles)
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./dist/css'));
+});
+
+gulp.task('set-dev', function() {
+    fs.writeFileSync('assets/env', "development", 'utf8');
+});
+
+gulp.task('set-prod', function() {
+    fs.writeFileSync('assets/env', "production", 'utf8');
 });
 
 gulp.task('mainTS:watch', function() {
